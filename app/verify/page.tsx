@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Loader, CheckCircle } from 'lucide-react';
@@ -8,7 +8,7 @@ import { ProgressBar } from '@/components/ui/progress-bar';
 import { VERIFICATION_STEPS } from '@/lib/constants';
 import { getAssetData } from '@/lib/mock-data';
 
-export default function VerifyPage() {
+function VerifyContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const tokenId = searchParams.get('token');

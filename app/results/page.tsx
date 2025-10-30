@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ExternalLink, Copy, AlertTriangle, CheckCircle, XCircle, FileText, Search } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Copy, AlertTriangle, CheckCircle, XCircle, FileText, Search, Loader } from 'lucide-react';
 import { BadgeCard } from '@/components/ui/badge-card';
 import { Button } from '@/components/ui/button';
 import { getAssetData } from '@/lib/mock-data';
@@ -21,7 +21,7 @@ const getRiskIcon = (risk: OverallRisk) => {
   return icons[risk];
 };
 
-export default function ResultsPage() {
+function ResultsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const tokenId = searchParams.get('token');
