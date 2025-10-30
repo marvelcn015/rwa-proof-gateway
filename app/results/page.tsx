@@ -298,3 +298,22 @@ function getAssetTypeLabel(type: string): string {
   };
   return labels[type] || type;
 }
+
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center p-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div className="flex flex-col items-center gap-4">
+        <Loader className="w-12 h-12 text-primary-600 animate-spin" />
+        <p className="text-gray-600 font-medium">載入中...</p>
+      </div>
+    </div>
+  );
+}
+
+export default function ResultsPage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <ResultsContent />
+    </Suspense>
+  );
+}
