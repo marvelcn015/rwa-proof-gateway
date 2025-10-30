@@ -151,7 +151,7 @@ export const MOCK_ASSETS: Record<string, AssetVerification> = {
         existence: {
           status: 'verified',
           title: 'Verified',
-          subtitle: '已驗證',
+          subtitle: '資產存在性已驗證',
           details: {
             source: '地區性銀行',
             method: 'VC Signature',
@@ -164,7 +164,7 @@ export const MOCK_ASSETS: Record<string, AssetVerification> = {
         legality: {
           status: 'warning',
           title: 'Partial Compliance',
-          subtitle: '部分合規',
+          subtitle: '資產僅部分合規',
           details: {
             source: '發行合約',
             method: 'Smart Contract Analysis',
@@ -178,7 +178,7 @@ export const MOCK_ASSETS: Record<string, AssetVerification> = {
         collateral: {
           status: 'verified',
           title: 'Clear',
-          subtitle: '無抵押',
+          subtitle: '資產未有被抵押紀錄',
           details: {
             source: 'Multi-Protocol Oracle',
             method: 'On-chain Scan',
