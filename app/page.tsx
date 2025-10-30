@@ -88,26 +88,45 @@ export default function HomePage() {
 
           {/* Example Buttons */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {TOKEN_EXAMPLES.map((example) => {
+            {TOKEN_EXAMPLES.map((example, index) => {
               const iconMap = {
-                safe: { Icon: CheckCircle2, color: 'text-success-600' },
-                warning: { Icon: AlertTriangle, color: 'text-warning-600' },
-                danger: { Icon: XCircle, color: 'text-danger-600' },
+                safe: { Icon: CheckCircle2, color: 'text-success-600', glowColor: 'rgb(16, 185, 129)' },
+                warning: { Icon: AlertTriangle, color: 'text-warning-600', glowColor: 'rgb(245, 158, 11)' },
+                danger: { Icon: XCircle, color: 'text-danger-600', glowColor: 'rgb(239, 68, 68)' },
               };
-              const { Icon, color } = iconMap[example.type];
+              const { Icon, color, glowColor } = iconMap[example.type];
 
               return (
-                <button
-                  key={example.id}
-                  onClick={() => handleExampleClick(example.id)}
-                  className="px-4 py-3 border-2 border-gray-200 rounded-xl hover:border-primary-300 hover:bg-primary-50 transition-all text-left group"
-                >
-                  <div className="flex items-center gap-2 font-semibold text-gray-900 group-hover:text-primary-700">
-                    <Icon className={`w-5 h-5 ${color}`} />
-                    {example.label}
+                <div key={example.id} className="relative rounded-xl">
+                  {/* Rotating glow effect container */}
+                  <div className="absolute -inset-1 rounded-xl overflow-hidden opacity-90">
+                    <motion.div
+                      className="absolute inset-0"
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      style={{
+                        background: `conic-gradient(from 0deg, transparent 0deg, ${glowColor} 50deg, transparent 120deg)`,
+                        filter: 'blur(4px)',
+                      }}
+                    />
                   </div>
-                  <div className="text-sm text-gray-600 mt-1">{example.description}</div>
-                </button>
+
+                  {/* Button */}
+                  <button
+                    onClick={() => handleExampleClick(example.id)}
+                    className="relative w-full px-4 py-3 border-2 border-gray-200 rounded-xl hover:border-primary-300 hover:bg-primary-50 transition-all text-left group bg-white z-10"
+                  >
+                    <div className="flex items-center gap-2 font-semibold text-gray-900 group-hover:text-primary-700">
+                      <Icon className={`w-5 h-5 ${color}`} />
+                      {example.label}
+                    </div>
+                    <div className="text-sm text-gray-600 mt-1">{example.description}</div>
+                  </button>
+                </div>
               );
             })}
           </div>
